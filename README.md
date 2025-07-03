@@ -2,6 +2,26 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Install dependencies
+
+```bash
+npm install
+# or  
+yarn install
+```
+## Make .env file 
+
+```bash
+touch .env
+```
+and add the following variables:
+
+```bash
+SHOPIFY_DOMAIN=https://chyvak.myshopify.com
+SHOPIFY_STOREFRONT_ACCESS_TOKEN=94fb496fb2668dda00b88db3d0f527d1
+```
+## password from shopify: awsura
+
 First, run the development server:
 
 ```bash

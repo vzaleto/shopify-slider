@@ -1,37 +1,17 @@
-'use client'
-import {useMemo, useState} from "react";
-import {ColorSelector} from "@/components/colorSelection/ColorSelector";
-import {ColorGallery} from "@/components/colorGallery/colorGallery";
-import {Product} from "@/types";
-import {Accordion} from "@/components/accordion/Accordion";
+import {getProductByHandle} from "@/services/getProductByHandle";
+import ProductClient from "@/components/ProducClient/ProductClient";
 
 
+export default async function ProductPage(props: { params: Promise< { handle: string }> }) {
 
-export default function ProductPage() {
+ const {handle} = await props.params;
 
-    const allColors: string[] = useMemo(() => {
-
-        const set = new Set<string>();
-
-        product.variants.forEach((variant) => {
-
-            const colorOption = variant.selectedOptions.find((elem) => elem.name === 'Color');
-
-            if (colorOption) {
-                set.add(colorOption.value)
-            }
-        })
-        return Array.from(set);
-    }, []);
-
-    const [selectedColor, setSelectedColor] = useState(allColors[0]);
+    const product = await  getProductByHandle(handle);
 
     return (
-        <>
-            <ColorSelector selectedColor={selectedColor} availableColors={allColors} onChange={setSelectedColor}/>
-            <ColorGallery images={product.media} selectedColor={selectedColor}/>
-            <Accordion items={metafields.accordionItems} allowMultipleOpen={metafields.allowMultipleOpen}/>
-        </>
-    )
+        <div className="container mx-auto" >
+            <ProductClient product={product}/>
+        </div>
 
+    )
 }
